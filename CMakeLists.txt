@@ -109,6 +109,13 @@ set( IXWEBSOCKET_HEADERS
 
 option(USE_TLS "Enable TLS support" FALSE)
 
+# Force OpenSSL on Android and iOS
+if (ANDROID OR IOS)
+add_subdirectory(openssl_binaries)
+set (USE_TLS TRUE)
+set (USE_OPEN_SSL ON)
+endif()
+
 if (USE_TLS)
     # default to securetranport on Apple if nothing is configured
     if (APPLE)
@@ -163,13 +170,19 @@ if (USE_TLS)
     message(STATUS "TLS configured to use openssl")
 
     # Help finding Homebrew's OpenSSL on macOS
-    if (APPLE)
+    if (APPLE AND NOT IOS)
       set(CMAKE_LIBRARY_PATH ${CMAKE_LIBRARY_PATH} /usr/local/opt/openssl/lib)
       set(CMAKE_INCLUDE_PATH ${CMAKE_INCLUDE_PATH} /usr/local/opt/openssl/include)
 
       # This is for MacPort OpenSSL 1.0
       # set(CMAKE_LIBRARY_PATH ${CMAKE_LIBRARY_PATH} /opt/local/lib/openssl-1.0)
       # set(CMAKE_INCLUDE_PATH ${CMAKE_INCLUDE_PATH} /opt/local/include/openssl-1.0)
+    endif()
+
+    # Use bundles for Android and iOS
+    if (IOS OR ANDROID)
+      set(CMAKE_LIBRARY_PATH ${CMAKE_LIBRARY_PATH} ${OPENSSL_BUNDLE_LIB_PATH})
+      set(CMAKE_INCLUDE_PATH ${CMAKE_INCLUDE_PATH} ${OPENSSL_BUNDLE_INCLUDE_PATH})
     endif()
 
     # Use OPENSSL_ROOT_DIR CMake variable if you need to use your own openssl

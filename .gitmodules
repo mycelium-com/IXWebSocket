@@ -1,0 +1,3 @@
+[submodule "openssl-binaries"]
+	path = openssl-binaries
+	url = https://github.com/mycelium-com/openssl-binaries
