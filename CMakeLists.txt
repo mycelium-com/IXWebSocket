@@ -111,7 +111,7 @@ option(USE_TLS "Enable TLS support" FALSE)
 
 # Force OpenSSL on Android and iOS
 if (ANDROID OR IOS)
-add_subdirectory(openssl_binaries)
+add_subdirectory(openssl-binaries)
 set (USE_TLS TRUE)
 set (USE_OPEN_SSL ON)
 endif()
@@ -179,18 +179,15 @@ if (USE_TLS)
       # set(CMAKE_INCLUDE_PATH ${CMAKE_INCLUDE_PATH} /opt/local/include/openssl-1.0)
     endif()
 
-    # Use bundles for Android and iOS
-    if (IOS OR ANDROID)
-      set(CMAKE_LIBRARY_PATH ${CMAKE_LIBRARY_PATH} ${OPENSSL_BUNDLE_LIB_PATH})
-      set(CMAKE_INCLUDE_PATH ${CMAKE_INCLUDE_PATH} ${OPENSSL_BUNDLE_INCLUDE_PATH})
+    # Try to find OpenSSL if target is neither Android nor iOS
+    if (NOT IOS AND NOT ANDROID)
+      # Use OPENSSL_ROOT_DIR CMake variable if you need to use your own openssl
+      find_package(OpenSSL REQUIRED)
+      message(STATUS "OpenSSL: " ${OPENSSL_VERSION})
     endif()
 
-    # Use OPENSSL_ROOT_DIR CMake variable if you need to use your own openssl
-    find_package(OpenSSL REQUIRED) 
-    message(STATUS "OpenSSL: " ${OPENSSL_VERSION})
-
     add_definitions(${OPENSSL_DEFINITIONS})
-    target_include_directories(ixwebsocket PUBLIC ${OPENSSL_INCLUDE_DIR})
+    target_include_directories(ixwebsocket PRIVATE ${OPENSSL_INCLUDE_DIR})
     target_link_libraries(ixwebsocket ${OPENSSL_LIBRARIES})
   elseif (USE_MBED_TLS)
     message(STATUS "TLS configured to use mbedtls")
