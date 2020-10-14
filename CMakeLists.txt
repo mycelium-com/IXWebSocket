@@ -188,7 +188,7 @@ if (USE_TLS)
 
     add_definitions(${OPENSSL_DEFINITIONS})
     target_include_directories(ixwebsocket PRIVATE ${OPENSSL_INCLUDE_DIR})
-    target_link_libraries(ixwebsocket ${OPENSSL_LIBRARIES})
+    target_link_libraries(ixwebsocket ${OPENSSL_SSL_LIBRARY} ${OPENSSL_CRYPTO_LIBRARY} )
   elseif (USE_MBED_TLS)
     message(STATUS "TLS configured to use mbedtls")
 
