@@ -98,6 +98,54 @@
             
             <li class="nav-item" data-level="1"><a href="#changelog" class="nav-link">Changelog</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#1104-2020-11-16" class="nav-link">[11.0.4] - 2020-11-16</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#1103-2020-11-16" class="nav-link">[11.0.3] - 2020-11-16</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#1102-2020-11-15" class="nav-link">[11.0.2] - 2020-11-15</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#1101-2020-11-11" class="nav-link">[11.0.1] - 2020-11-11</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#1100-2020-11-11" class="nav-link">[11.0.0] - 2020-11-11</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#1057-2020-11-07" class="nav-link">[10.5.7] - 2020-11-07</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#1056-2020-11-07" class="nav-link">[10.5.6] - 2020-11-07</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#1055-2020-11-07" class="nav-link">[10.5.5] - 2020-11-07</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#1054-2020-10-30" class="nav-link">[10.5.4] - 2020-10-30</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#1053-2020-10-19" class="nav-link">[10.5.3] - 2020-10-19</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#1052-2020-10-12" class="nav-link">[10.5.2] - 2020-10-12</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#1051-2020-10-09" class="nav-link">[10.5.1] - 2020-10-09</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
             <li class="nav-item" data-level="2"><a href="#1050-2020-09-30" class="nav-link">[10.5.0] - 2020-09-30</a>
               <ul class="nav flex-column">
               </ul>
@@ -1051,6 +1099,30 @@
 
 <h1 id="changelog">Changelog</h1>
 <p>All changes to this project will be documented in this file.</p>
+<h2 id="1104-2020-11-16">[11.0.4] - 2020-11-16</h2>
+<p>(ixwebsocket) Handle EINTR return code in ix::poll and IXSelectInterrupt</p>
+<h2 id="1103-2020-11-16">[11.0.3] - 2020-11-16</h2>
+<p>(ixwebsocket) Fix #252 / regression in 11.0.2 with string comparisons</p>
+<h2 id="1102-2020-11-15">[11.0.2] - 2020-11-15</h2>
+<p>(ixwebsocket) use a C++11 compatible make_unique shim</p>
+<h2 id="1101-2020-11-11">[11.0.1] - 2020-11-11</h2>
+<p>(socket) replace a std::vector with an std::array used as a tmp buffer in Socket::readBytes</p>
+<h2 id="1100-2020-11-11">[11.0.0] - 2020-11-11</h2>
+<p>(openssl security fix) in the client to server connection, peer verification is not done in all cases. See https://github.com/machinezone/IXWebSocket/pull/250</p>
+<h2 id="1057-2020-11-07">[10.5.7] - 2020-11-07</h2>
+<p>(docker) build docker container with zlib disabled</p>
+<h2 id="1056-2020-11-07">[10.5.6] - 2020-11-07</h2>
+<p>(cmake) DEFLATE -&gt; Deflate in CMake to stop warnings about casing</p>
+<h2 id="1055-2020-11-07">[10.5.5] - 2020-11-07</h2>
+<p>(ws autoroute) Display result in compliant way (AUTOROUTE IXWebSocket :: N ms) so that result can be parsed easily</p>
+<h2 id="1054-2020-10-30">[10.5.4] - 2020-10-30</h2>
+<p>(ws gunzip + IXGZipCodec) Can decompress gziped data with libdeflate. ws gunzip computed output filename was incorrect (was the extension aka gz) instead of the file without the extension. Also check whether the output file is writeable.</p>
+<h2 id="1053-2020-10-19">[10.5.3] - 2020-10-19</h2>
+<p>(http code) With zlib disabled, some code should not be reached</p>
+<h2 id="1052-2020-10-12">[10.5.2] - 2020-10-12</h2>
+<p>(ws curl) Add support for --data-binary option, to set the request body. When present the request will be sent with the POST verb</p>
+<h2 id="1051-2020-10-09">[10.5.1] - 2020-10-09</h2>
+<p>(http client + server + ws) Add support for compressing http client requests with gzip. --compress_request argument is used in ws to enable this. The Content-Encoding is set to gzip, and decoded on the server side if present.</p>
 <h2 id="1050-2020-09-30">[10.5.0] - 2020-09-30</h2>
 <p>(http client + server + ws) Add support for uploading files with ws -F foo=@filename, new -D http server option to debug incoming client requests, internal api changed for http POST, PUT and PATCH to supply an HttpFormDataParameters</p>
 <h2 id="1049-2020-09-30">[10.4.9] - 2020-09-30</h2>
