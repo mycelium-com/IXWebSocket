@@ -201,7 +201,7 @@ if (USE_TLS)
   endif()
 endif()
 
-option(USE_ZLIB "Enable zlib support" TRUE)
+option(USE_ZLIB "Enable zlib support" FALSE)
 
 if (USE_ZLIB)
   # Use ZLIB_ROOT CMake variable if you need to use your own zlib
