@@ -109,8 +109,8 @@ set( IXWEBSOCKET_HEADERS
 
 option(USE_TLS "Enable TLS support" FALSE)
 
-# Force OpenSSL on Android
-if (ANDROID)
+# Force OpenSSL on Android and iOS
+if (ANDROID OR IOS)
 add_subdirectory(openssl-binaries)
 set (USE_TLS TRUE)
 set (USE_OPEN_SSL ON)
